@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif-display: 'Cinzel', serif;
+    --font-serif-ornate: 'Cinzel Decorative', serif;
+    --font-serif-body: 'Crimson Pro', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-serif-body), Georgia, serif;
+    background-color: #0d0b0b;
+    color: #ded7cc;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-serif-display), serif;
+    letter-spacing: 0.05em;
+  }
+
+  .font-ornate {
+    font-family: var(--font-serif-ornate), serif;
+  }
+
+  .font-mono-archive {
+    font-family: var(--font-mono), monospace;
+  }
+}
+
+/* Atmospheric subtle vignette and paper grain */
+.archive-vignette {
+  background: radial-gradient(circle at 50% 35%, rgba(30, 22, 22, 0.25) 0%, rgba(10, 8, 8, 0.85) 75%, rgba(6, 5, 5, 0.98) 100%);
+}
+
+.candlelight-glow {
+  box-shadow: 0 0 50px -10px rgba(180, 110, 45, 0.18), inset 0 0 40px -15px rgba(140, 70, 25, 0.12);
+}
+
+.parchment-border {
+  border: 1px solid rgba(168, 142, 110, 0.22);
+}
+
+.parchment-border-focus {
+  border: 1px solid rgba(198, 160, 100, 0.5);
+}
+
+/* Custom scrollbar for Victorian ledger / archive */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #110f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #362924;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #523f37;
+}
