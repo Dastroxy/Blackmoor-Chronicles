@@ -172,6 +172,62 @@ class GothicAudioSystem {
   }
 
   /**
+   * Sound of locker latch / metal door click
+   */
+  public playLockerLatch() {
+    this.initContext();
+    if (!this.ctx || !this.sfxGain || this.isMuted) return;
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.08);
+
+      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+
+      osc.connect(gain);
+      gain.connect(this.sfxGain);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.11);
+    } catch {}
+  }
+
+  public playDoorClick() {
+    this.playLockerLatch();
+  }
+
+  /**
+   * 4-tone modern academy electronic chime
+   */
+  public playSchoolBell() {
+    this.initContext();
+    if (!this.ctx || !this.sfxGain || this.isMuted) return;
+
+    const ctx = this.ctx;
+    const tones = [523.25, 659.25, 783.99, 1046.5];
+    tones.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const startTime = ctx.currentTime + idx * 0.12;
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      gain.gain.setValueAtTime(0.18, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 1.2);
+
+      osc.connect(gain);
+      gain.connect(this.sfxGain!);
+
+      osc.start(startTime);
+      osc.stop(startTime + 1.25);
+    });
+  }
+
+  /**
    * Sound of paper rustle / archive turning
    */
   public playPaperRustle() {

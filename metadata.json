@@ -1,6 +1,6 @@
 {
   "name": "The Blackmoor Chronicles",
-  "description": "A cooperative five-player gothic murder mystery investigative archive: Case 001 - The Chapel Murder.",
+  "description": "An investigative murder mystery archive featuring Case 001: The Chapel Murder and Case 002: The Last Bell.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

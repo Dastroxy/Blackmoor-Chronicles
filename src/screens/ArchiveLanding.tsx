@@ -1,14 +1,20 @@
 import React from 'react';
-import { Shield, Lock, ChevronRight, FileText, Sparkles, BookOpen, Clock } from 'lucide-react';
+import { Shield, Lock, ChevronRight, FileText, Sparkles, BookOpen, Clock, ArrowLeft } from 'lucide-react';
 import { CASE_001_INFO } from '../data/case001Data';
 import { soundMaster } from '../utils/audioSystem';
 import { AudioControls } from '../components/AudioControls';
 
 interface ArchiveLandingProps {
   onBeginCase: () => void;
+  onReturnToArchiveHub?: () => void;
+  onSelectCase002?: () => void;
 }
 
-export const ArchiveLanding: React.FC<ArchiveLandingProps> = ({ onBeginCase }) => {
+export const ArchiveLanding: React.FC<ArchiveLandingProps> = ({ 
+  onBeginCase, 
+  onReturnToArchiveHub,
+  onSelectCase002 
+}) => {
   const handleStart = () => {
     soundMaster.playWaxSeal();
     soundMaster.playBellToll(1);
@@ -21,6 +27,17 @@ export const ArchiveLanding: React.FC<ArchiveLandingProps> = ({ onBeginCase }) =
       {/* Top Bar / Seal Header */}
       <header className="max-w-6xl mx-auto w-full flex items-center justify-between border-b border-[#30231d] pb-4">
         <div className="flex items-center space-x-3">
+          {onReturnToArchiveHub && (
+            <button
+              id="btn-back-to-archive-hub"
+              type="button"
+              onClick={onReturnToArchiveHub}
+              className="p-2 rounded bg-[#1a1311] border border-[#4a3429] hover:border-[#b88c52] text-[#8c7766] hover:text-[#f5ebd9] transition-colors cursor-pointer mr-1"
+              title="Return to Master Case Archive"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+          )}
           <div className="w-9 h-9 rounded-full border border-[#6b4e39] bg-[#1a1311] flex items-center justify-center text-[#c29b62] shadow font-display font-black text-base">
             †
           </div>
@@ -140,24 +157,30 @@ export const ArchiveLanding: React.FC<ArchiveLandingProps> = ({ onBeginCase }) =
             </span>
           </div>
 
-          {/* Case 002 Locked Card */}
-          <div className="p-4 rounded border border-[#241a16] bg-[#120d0c] opacity-60 flex items-center justify-between">
+          {/* Case 002 Active Card */}
+          <div 
+            onClick={onSelectCase002}
+            className={`p-4 rounded border transition-colors flex items-center justify-between ${
+              onSelectCase002 
+                ? 'border-[#2b4263] bg-[#0f141d] hover:border-[#58a6ff] cursor-pointer' 
+                : 'border-[#241a16] bg-[#120d0c]'
+            }`}
+          >
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded bg-[#17110f] border border-[#2e201b] flex items-center justify-center text-[#6e5a4b] font-display text-xs">
+              <div className="w-8 h-8 rounded bg-[#162235] border border-[#2b4263] flex items-center justify-center text-[#58a6ff] font-mono-code text-xs">
                 002
               </div>
               <div>
-                <div className="text-xs font-display font-semibold text-[#8a7767]">
-                  The High Moor Foundry
+                <div className="text-xs font-bold text-[#f0f6fc]">
+                  The Last Bell
                 </div>
-                <div className="text-[11px] text-[#5e4f42]">
-                  Pending Excavation
+                <div className="text-[11px] text-[#8b949e]">
+                  Westbridge Senior Academy
                 </div>
               </div>
             </div>
-            <span className="text-[10px] font-mono-archive px-2 py-0.5 rounded bg-[#1c1412] text-[#786455] border border-[#33231d] flex items-center space-x-1">
-              <Lock className="w-2.5 h-2.5" />
-              <span>LOCKED</span>
+            <span className="text-[10px] font-mono-code px-2 py-0.5 rounded bg-[#162235] text-[#58a6ff] border border-[#2b4263]">
+              AVAILABLE
             </span>
           </div>
 
@@ -169,10 +192,10 @@ export const ArchiveLanding: React.FC<ArchiveLandingProps> = ({ onBeginCase }) =
               </div>
               <div>
                 <div className="text-xs font-display font-semibold text-[#8a7767]">
-                  The Raven Codicil
+                  The High Moor Foundry
                 </div>
                 <div className="text-[11px] text-[#5e4f42]">
-                  Sealed In Chancery
+                  Pending Excavation
                 </div>
               </div>
             </div>

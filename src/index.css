@@ -26,9 +26,31 @@
   .font-mono-archive {
     font-family: var(--font-mono), monospace;
   }
+
+  .font-mono-code {
+    font-family: var(--font-mono), monospace;
+  }
 }
 
-/* Atmospheric subtle vignette and paper grain */
+/* Modern Academy Thriller Styles (Case 002) */
+.academy-backdrop {
+  background: radial-gradient(circle at 50% 25%, rgba(18, 26, 40, 0.45), rgba(10, 13, 18, 0.95) 75%, #07090c);
+}
+
+.cctv-scanline {
+  background: linear-gradient(rgba(18, 22, 28, 0) 50%, rgba(0, 0, 0, 0.35) 50%) 0 0 / 100% 3px,
+              linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)) 0 0 / 4px 100%;
+}
+
+.subtle-glow {
+  box-shadow: 0 0 45px -10px rgba(56, 139, 253, 0.08), inset 0 0 30px -15px rgba(56, 139, 253, 0.04);
+}
+
+.warning-pulse {
+  box-shadow: 0 0 30px -5px rgba(239, 68, 68, 0.2);
+}
+
+/* Atmospheric subtle vignette and paper grain (Case 001) */
 .archive-vignette {
   background: radial-gradient(circle at 50% 35%, rgba(30, 22, 22, 0.25) 0%, rgba(10, 8, 8, 0.85) 75%, rgba(6, 5, 5, 0.98) 100%);
 }

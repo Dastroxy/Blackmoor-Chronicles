@@ -56,6 +56,8 @@ export interface CaseOverviewData {
   suspectPool: string[];
 }
 
+export type ActiveCase = 'hub' | 'case001' | 'case002';
+
 export type ScreenState = 
   | 'landing'
   | 'opening'

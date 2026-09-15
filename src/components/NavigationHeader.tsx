@@ -1,5 +1,5 @@
 import React from 'react';
-import { Timer, Clock, AlertTriangle, ScrollText, UserCheck, Pause, Play, RotateCcw } from 'lucide-react';
+import { Timer, Clock, AlertTriangle, ScrollText, UserCheck, Pause, Play, RotateCcw, ArrowLeft } from 'lucide-react';
 import { AudioControls } from './AudioControls';
 import { InvestigatorRole } from '../types';
 import { INVESTIGATOR_ROLES } from '../data/case001Data';
@@ -14,6 +14,7 @@ interface NavigationHeaderProps {
   hintsUsedCount: number;
   onSelectRolePrompt: () => void;
   onOpenGuidelines: () => void;
+  onReturnToArchive?: () => void;
 }
 
 export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
@@ -24,7 +25,8 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   currentRole,
   hintsUsedCount,
   onSelectRolePrompt,
-  onOpenGuidelines
+  onOpenGuidelines,
+  onReturnToArchive
 }) => {
   const formatTime = (totalSecs: number) => {
     const mins = Math.floor(totalSecs / 60);
@@ -45,6 +47,17 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     >
       {/* Brand & Case Identification */}
       <div className="flex items-center space-x-3">
+        {onReturnToArchive && (
+          <button
+            id="btn-nav-return-archive"
+            type="button"
+            onClick={onReturnToArchive}
+            className="p-1.5 rounded bg-[#151212] border border-[#362924] text-[#8c7b6c] hover:border-[#523f37] hover:text-[#d4c5b2] transition-colors cursor-pointer"
+            title="Return to Master Case Archive"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </button>
+        )}
         <div className="w-8 h-8 rounded border border-[#523e32] bg-[#1a1413] flex items-center justify-center text-[#c29b62] shadow-inner font-display font-bold text-sm">
           †
         </div>
